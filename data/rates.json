@@ -1,0 +1,38 @@
+{
+  "fetchedAt": "2026-09-24T06:00:00Z",
+  "source": "FRED (Federal Reserve Bank of St. Louis)",
+  "series": {
+    "mortgage30": {
+      "value": 6.28,
+      "unit": "%",
+      "label": "30-ročná fixná hypotéka",
+      "seriesId": "MORTGAGE30US",
+      "observedOn": "2026-09-18",
+      "sourceUrl": "https://fred.stlouisfed.org/series/MORTGAGE30US"
+    },
+    "treasury10": {
+      "value": 4.12,
+      "unit": "%",
+      "label": "10-ročný štátny dlhopis",
+      "seriesId": "DGS10",
+      "observedOn": "2026-09-23",
+      "sourceUrl": "https://fred.stlouisfed.org/series/DGS10"
+    },
+    "homePriceIndex": {
+      "value": 4.0,
+      "unit": "%",
+      "label": "Zhodnotenie nehnuteľností (medziročne)",
+      "seriesId": "CSUSHPINSA",
+      "observedOn": "2026-07-01",
+      "sourceUrl": "https://fred.stlouisfed.org/series/CSUSHPINSA"
+    },
+    "cpiRent": {
+      "value": 3.0,
+      "unit": "%",
+      "label": "Rast nájmu (CPI bývanie)",
+      "seriesId": "CUSR0000SEHA",
+      "observedOn": "2026-08-01",
+      "sourceUrl": "https://fred.stlouisfed.org/series/CUSR0000SEHA"
+    }
+  }
+}

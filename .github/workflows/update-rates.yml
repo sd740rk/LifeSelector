@@ -1,0 +1,32 @@
+name: Obnova sadzieb z FRED
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # každý deň o 6:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stiahnuť sadzby
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: node scripts/fetch-rates.mjs
+
+      - name: Commitnúť zmenu
+        run: |
+          if git diff --quiet data/rates.json; then
+            echo "Bez zmeny, nič necommitujem."
+            exit 0
+          fi
+          git config user.name "rozvaha-bot"
+          git config user.email "actions@github.com"
+          git add data/rates.json
+          git commit -m "data: obnova sadzieb z FRED"
+          git push

@@ -1,0 +1,122 @@
+/* Rozvaha — dizajnové tokeny (Blok 3: biela a elektrická fialová).
+   Význam nesie svetlosť, tvar a slovo. Odtieň je až tretia vrstva. */
+
+:root {
+  --page: #ECECF3;
+  --card: #FFFFFF;
+  --track: #E3E3EC;
+  --border: #E1E1E8;
+  --border-dashed: #C9C9D4;
+  --inactive: #BCBCC8;
+  --icon: #858598;
+  --text-secondary: #5C5C6B;
+  --text-body: #3A3A47;
+  --text-ink: #121218;
+
+  --accent: #5B3FD9;
+  --accent-deep: #4A31BC;
+  --accent-chip: #6E55E0;
+  --accent-soft: #EEEAFD;
+  --accent-soft-border: #D4CBF8;
+  --accent-soft-text: #3F27A8;
+  --on-accent: #FFFFFF;
+  --on-accent-muted: #DBD4FA;
+  --on-accent-label: #C3B6F5;
+  --accent-bar-alt: #8A78E6;
+  --progress-done: #B9AEF0;
+
+  --shell: #161620;
+  --shell-active: #2A2A38;
+  --shell-card: #20202C;
+  --shell-text: #F6F6F9;
+  --shell-secondary: #A5A5B5;
+  --shell-logo: #A48CF5;
+
+  --warn-bg: #FFF4E0;
+  --warn-border: #F0D7A8;
+  --warn-text: #7A4E0E;
+  --stale-bg: #33281A;
+  --stale-text: #C9B79A;
+
+  --radius-sm: 9px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --font-display: Fraunces, Georgia, "Times New Roman", serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page: #121218;
+    --card: #1C1C24;
+    --track: #2A2A35;
+    --border: #32323F;
+    --border-dashed: #44445A;
+    --inactive: #55556A;
+    --icon: #8E8EA2;
+    --text-secondary: #A8A8BC;
+    --text-body: #D6D6E2;
+    --text-ink: #F6F6F9;
+
+    --accent: #A48CF5;
+    --accent-deep: #8A6EF0;
+    --accent-chip: #6E55E0;
+    --accent-soft: #251E3D;
+    --accent-soft-border: #3C3160;
+    --accent-soft-text: #C3B6F5;
+    --on-accent: #121218;
+    --on-accent-muted: #2E2550;
+    --on-accent-label: #4A3B86;
+    --accent-bar-alt: #7B66D6;
+    --progress-done: #5B4BA0;
+
+    --shell: #0D0D13;
+    --shell-active: #24243050;
+    --shell-card: #1A1A24;
+    --shell-text: #F6F6F9;
+    --shell-secondary: #9A9AB0;
+
+    --warn-bg: #2E2519;
+    --warn-border: #4A3A24;
+    --warn-text: #E8C28A;
+    --stale-bg: #2A2114;
+    --stale-text: #D2BFA0;
+  }
+}
+
+:root[data-theme="dark"] {
+  --page: #121218;
+  --card: #1C1C24;
+  --track: #2A2A35;
+  --border: #32323F;
+  --border-dashed: #44445A;
+  --inactive: #55556A;
+  --icon: #8E8EA2;
+  --text-secondary: #A8A8BC;
+  --text-body: #D6D6E2;
+  --text-ink: #F6F6F9;
+
+  --accent: #A48CF5;
+  --accent-deep: #8A6EF0;
+  --accent-chip: #6E55E0;
+  --accent-soft: #251E3D;
+  --accent-soft-border: #3C3160;
+  --accent-soft-text: #C3B6F5;
+  --on-accent: #121218;
+  --on-accent-muted: #2E2550;
+  --on-accent-label: #4A3B86;
+  --accent-bar-alt: #7B66D6;
+  --progress-done: #5B4BA0;
+
+  --shell: #0D0D13;
+  --shell-active: #242430;
+  --shell-card: #1A1A24;
+  --shell-text: #F6F6F9;
+  --shell-secondary: #9A9AB0;
+
+  --warn-bg: #2E2519;
+  --warn-border: #4A3A24;
+  --warn-text: #E8C28A;
+  --stale-bg: #2A2114;
+  --stale-text: #D2BFA0;
+}
