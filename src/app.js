@@ -61,6 +61,34 @@ const FACTOR_NAMES = {
   financial: 'Financie', flexibility: 'Flexibilita', stability: 'Stabilita', lifestyle: 'Životný štýl'
 };
 
+/** Popisy faktorov. Bez nich je nastavovanie váh hádanie — človek nevie, čo posúva. */
+const FACTOR_INFO = {
+  financial: {
+    what: 'Koľko vám na konci zostane v majetku, keď sa odráta všetko, čo rozhodnutie stálo.',
+    how: 'Počíta sa z vašich čísel a z dát o sadzbách.',
+    high: 'Vysoká váha znamená, že rozhoduje suma na konci.',
+    low: 'Nízka váha znamená, že peniaze sú pre vás až druhoradé.'
+  },
+  flexibility: {
+    what: 'Ako ľahko a lacno sa dá rozhodnutie zvrátiť, keď sa vám zmení život.',
+    how: 'Odvodzuje sa z nákladov na výstup a z toho, ako dlho ste viazaný — pri byte je to provízia a čas predaja, pri nájme výpovedná lehota.',
+    high: 'Vysoká váha dáva za pravdu nájmu a krátkym záväzkom.',
+    low: 'Nízka váha znamená, že ste rozhodnutý zostať.'
+  },
+  stability: {
+    what: 'Nakoľko viete dopredu, čo budete platiť, a nakoľko sa dá veriť predpokladom.',
+    how: 'Odvodzuje sa z kolísania nákladov a z istoty vstupov — fixná splátka je stabilná, nájom môže majiteľ zdvihnúť, stavba sa môže predražiť.',
+    high: 'Vysoká váha dáva za pravdu fixnej hypotéke.',
+    low: 'Nízka váha znamená, že výkyvy zvládnete.'
+  },
+  lifestyle: {
+    what: 'Čo vám to umožní v bežnom dni — či môžete zariaďovať po svojom, či to pôsobí trvalo, nakoľko máte pod kontrolou okolie.',
+    how: 'Jediný faktor, ktorý sa zámerne neodvodzuje z dát. Hodnotíte ho vy, lebo trhové čísla nevedia, ako sa vám kde býva.',
+    high: 'Vysoká váha dáva za pravdu vlastnému bývaniu.',
+    low: 'Nízka váha znamená, že bývanie je pre vás hlavne strecha nad hlavou.'
+  }
+};
+
 const ALT_CHOICES = [
   { id: 'account', label: 'Nechal by som ich na účte', hint: 'Bez zhodnotenia, kedykoľvek dostupné', rate: 0.5 },
   { id: 'savings', label: 'Sporiaci účet', hint: 'Istota, nízky výnos', rate: 2.5 },
@@ -566,18 +594,26 @@ function screenProfile() {
   <div class="stack">
     <div>
       <h1>Čo je pre vás dôležité</h1>
-      <p class="body" style="margin-top:8px;max-width:760px">Tieto váhy rozhodujú o tom, ktorá možnosť vám vyjde ako najvhodnejšia. Neexistuje správne nastavenie — existuje len vaše.</p>
+      <p class="body" style="margin-top:8px;max-width:760px">Každé rozhodnutie hodnotíme v štyroch oblastiach. Váhou poviete, koľko ktorá pre vás znamená — a podľa toho sa zmení, ktorá možnosť vyjde ako najvhodnejšia. Neexistuje správne nastavenie, existuje len vaše.</p>
+      <p class="muted" style="margin-top:6px;max-width:760px">Ak dáte všetkým štyrom rovnako, rozhoduje priemer. Ak niečomu dáte nulu, do výsledku sa to vôbec nezaráta.</p>
     </div>
 
     <div class="card" style="display:flex;flex-direction:column;gap:18px">
-      ${Object.keys(FACTOR_NAMES).map((k) => `
-        <div class="field">
+      ${Object.keys(FACTOR_NAMES).map((k) => {
+        const info = FACTOR_INFO[k];
+        const v = p.weights[k];
+        return `
+        <div class="field" style="gap:8px;padding-bottom:18px;border-bottom:1px solid var(--border)">
           <div class="between" style="align-items:baseline">
-            <label for="w-${k}"><strong style="color:var(--text-ink)">${FACTOR_NAMES[k]}</strong></label>
-            <span class="muted">${word(p.weights[k])} · ${p.weights[k]}/10</span>
+            <label for="w-${k}"><strong style="color:var(--text-ink);font-size:16px">${FACTOR_NAMES[k]}</strong></label>
+            <span class="muted">${word(v)} · ${v}/10</span>
           </div>
-          <input id="w-${k}" type="range" min="0" max="10" step="1" value="${p.weights[k]}" data-weight="${k}">
-        </div>`).join('')}
+          <p class="body" style="font-size:13px;max-width:640px">${info.what}</p>
+          <p class="muted" style="font-size:12px;max-width:640px">${info.how}</p>
+          <input id="w-${k}" type="range" min="0" max="10" step="1" value="${v}" data-weight="${k}">
+          <p class="muted" style="font-size:12px">${v >= 6 ? info.high : v <= 3 ? info.low : 'Stredná váha — tento faktor sa uplatní, ale nerozhodne sám.'}</p>
+        </div>`;
+      }).join('')}
     </div>
 
     <div class="grid-2">
